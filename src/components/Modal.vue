@@ -22,9 +22,7 @@ await getMoviesInfo();
 const purchaseMovie = () => {
   getMoviesInfo();
   store.$patch((state) => {
-    // state.boughtId.push(props.id);
     state.boughtPosters.push(movieInfo.value.poster_path);
-    // console.log(movieInfo.value.poster_path);
   });
 };
 </script>
@@ -35,11 +33,7 @@ const purchaseMovie = () => {
       <div class="modal-inner-container">
         <button class="close-button" @click="emits('toggleModal')">X</button>
         <div v-if="movieInfo" class="info-container">
-          <img
-            class="poster"
-            :src="`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`"
-            alt=""
-          />
+          <img class="poster" :src="`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`" alt="" />
           <div class="info">
             <h1>{{ movieInfo.title }}</h1>
             <p>

@@ -3,6 +3,7 @@ import Home from "../views/HomePage.vue";
 import Login from "../views/LoginPage.vue";
 import Movie from "../views/MoviePage.vue";
 import Purchase from "../views/PurchasePage.vue";
+import Register from "../views/Register.vue";
 
 const routes = [
   {
