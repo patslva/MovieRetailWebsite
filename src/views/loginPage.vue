@@ -8,12 +8,15 @@ import { auth } from "../firebase/index.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
+
 const store = useStore();
 const router = useRouter();
 const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
 const errorCheck = ref(false);
+
+
 const register = () => {
   router.push("./register");
 };
@@ -53,7 +56,7 @@ const registerUserByGoogle = async () => {
       </div>
     </div>
     <form @submit.prevent="login()">
-      <input type="text" placeholder="UserName" v-model="name" />
+      <input type="text" placeholder="email" v-model="email" />
       <input type="password" placeholder="Password" v-model="password" />
       <input type="submit" value="LOGIN" />
     </form>

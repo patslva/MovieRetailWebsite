@@ -11,23 +11,27 @@ const username = ref("");
 const email = ref("");
 const password1 = ref("");
 const password2 = ref("");
+
 const registerUserByEmail = async () => {
     if (password1.value !== password2.value) {
         console.log("Password issue");
         return;
     }
+    console.log(email.value, password1.value);
     try {
         await createUserWithEmailAndPassword(auth, email.value, password1.value);
     } catch (error) {
         console.log(error);
     }
 };
+
 const registerUserByGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const user = await signInWithPopup(auth, provider);
     console.log(user);
 }
 </script>
+
 <template>
     <div>
         <h1>Login</h1>
@@ -44,6 +48,7 @@ const registerUserByGoogle = async () => {
         </form>
     </div>
 </template>
+
 <style scoped>
 h1 {
     color: red;

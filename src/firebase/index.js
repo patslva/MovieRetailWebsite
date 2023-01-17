@@ -18,4 +18,4 @@ const auth = getAuth();
 const firestore = getFirestore();
 
 
-export {auth,firestore}
+export {auth, firestore}
