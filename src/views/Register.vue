@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { auth } from "../firebase/index";
 import {
-    createUserwithEmailAndPassWord,
+    createUserWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
@@ -26,6 +26,7 @@ const registerUserByGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const user = await signInWithPopup(auth, provider);
     console.log(user);
+}
 </script>
 <template>
     <div>
@@ -43,6 +44,16 @@ const registerUserByGoogle = async () => {
         </form>
     </div>
 </template>
-<script scoped>
+<style scoped>
+h1 {
+    color: red;
+}
 
-</script>
+button {
+    color: red;
+}
+
+input {
+    color: white;
+}
+</style>

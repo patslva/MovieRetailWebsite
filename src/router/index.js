@@ -19,6 +19,10 @@ const routes = [
     component: Movie,
   },
   {
+    path: "/register",
+    component: Register,
+  },
+  {
     path: "/purchases",
     component: Purchase,
   },

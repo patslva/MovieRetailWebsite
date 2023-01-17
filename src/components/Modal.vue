@@ -2,51 +2,46 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useStore } from "../store/index.js";
-
 const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
-// const selected = ref(null);
-const movieInfo = ref(false);
-const getMoviesInfo = async () => {
-  movieInfo.value = (
-    await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
-      params: {
-        api_key: "261b287b93c009cd3f2fae376443794a",
-      },
-    })
-  ).data;
-};
-await getMoviesInfo();
-
-const purchaseMovie = () => {
-  getMoviesInfo();
-  store.$patch((state) => {
-    state.boughtPosters.push(movieInfo.value.poster_path);
-  });
-};
+let data = (
+  await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
+    params: {
+      api_key: "261b287b93c009cd3f2fae376443794a",
+    },
+  })
+).data;
 </script>
 
 <template>
   <Teleport to="body">
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
-        <button class="close-button" @click="emits('toggleModal')">X</button>
-        <div v-if="movieInfo" class="info-container">
-          <img class="poster" :src="`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`" alt="" />
+        <div class="info-container">
+          <img class="poster" :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`" alt="" />
           <div class="info">
-            <h1>{{ movieInfo.title }}</h1>
+            <h1>{{ data.title }}</h1>
             <p>
-              Release Date: {{ movieInfo.release_date }} | Popularity:
-              {{ movieInfo.popularity }} | Runtime: {{ movieInfo.runtime }}
+              Release Date: {{ data.release_date }} | Popularity: {{ data.popularity }} |
+              Runtime: {{ data.runtime }}
             </p>
             <p>
-              Vote Average: {{ movieInfo.vote_average }} | Vote Count:
-              {{ movieInfo.vote_count }}
+              Vote Average: {{ data.vote_average }} | Vote Count:
+              {{ data.vote_count }}
             </p>
             <h2>Overview:</h2>
-            <p>{{ movieInfo.overview }}</p>
-            <button @click="purchaseMovie()" type="reset">ADD</button>
+            <p>{{ data.overview }}</p>
+            <button @click="
+  store.addToCart(props.id, {
+    id: data.id,
+    poster: data.poster_path,
+    title: data.title,
+    date: data.release_date,
+  })
+            ">
+              ADD
+            </button>
           </div>
         </div>
       </div>

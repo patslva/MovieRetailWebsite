@@ -1,42 +1,46 @@
 <script setup>
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../firebase/index.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
 import { useStore } from "../store/index.js";
 const store = useStore();
 const router = useRouter();
-const name = ref("");
+const email = ref("");
 const password = ref("");
-const error = ref(false);
-const movieInfo = ref(false);
-const movie = "movie";
-const timeWindow = "day";
-const getMovieInfo = async () => {
-  movieInfo.value = (
-    await axios.get(
-      `https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`,
-      {
-        params: {
-          api_key: "261b287b93c009cd3f2fae376443794a",
-        },
+const errorMessage = ref("");
+const errorCheck = ref(false);
+const register = () => {
+  router.push("./register");
+};
+
+const login = () => {
+  try {
+    signInWithEmailAndPassword(auth, email.value, password.value).then(
+      (userCredential) => {
+        const user = userCredential.user;
+        store.getMovies();
+        router.push("./movies");
       }
-    )
-  ).data;
-  for (let movies of movieInfo.value.results) {
-    store.$patch((state) => {
-      state.posters.push(movies.poster_path);
-      state.id.push(movies.id);
-      state.hasChanged = true;
-    });
+    );
+  } catch (error) {
+    errorCheck.value = true;
+    errorMessage.value = error.message;
   }
 };
-const login = () => {
-  if (name.value === "tmdb" && password.value === "movies") {
-    getMovieInfo();
+
+const registerUserByGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider).then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
     router.push("./movies");
-  } else {
-    error.value = true;
-  }
+  });
 };
 </script>
 
@@ -56,6 +60,12 @@ const login = () => {
     <div v-if="error" class="submitted">
       <p>Incorrect Username/Password!</p>
     </div>
+    <div class="Google">
+      <p>Register with Google</p>
+      <button @click="registerUserByGoogle">Google</button>
+    </div>
+    <p v-if="errorCheck">{{ errorMessage }}!</p>
+    <button @click="register()">Register</button>
   </div>
 </template>
 
@@ -63,25 +73,30 @@ const login = () => {
 .company {
   display: flex;
 }
+
 .log {
   display: flex;
   flex-direction: column;
-  /* background: url("../images/movieWallpaper.jpg") no-repeat center/cover; */
 }
+
 button {
   margin-left: 65%;
   color: red;
 }
+
 img {
   width: 100px;
 }
+
 input {
   color: white;
   display: inline-block;
 }
+
 h1 {
   color: red;
 }
+
 form {
   margin: 0 auto;
   text-align: center;
