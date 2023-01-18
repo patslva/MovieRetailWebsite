@@ -63,12 +63,6 @@ const registerUserByGoogle = async () => {
     <div v-if="error" class="submitted">
       <p>Incorrect Username/Password!</p>
     </div>
-    <div class="Google">
-      <p>Register with Google</p>
-      <button @click="registerUserByGoogle">Google</button>
-    </div>
-    <p v-if="errorCheck">{{ errorMessage }}!</p>
-    <button @click="register()">Register</button>
   </div>
 </template>
 

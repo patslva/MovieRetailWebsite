@@ -6,6 +6,11 @@
     <div class="company">
       <h1>Walmart IMDB</h1>
     </div>
+    <RouterLink to="/register" custom v-slot="{ navigate }">
+      <button @click="navigate" role="link">REGISTER</button>
+    </RouterLink>
+  </div>
+  <div class="login">
     <RouterLink to="/login" custom v-slot="{ navigate }">
       <button @click="navigate" role="link">LOGIN</button>
     </RouterLink>
@@ -17,13 +22,16 @@
   padding-left: 2%;
   display: flex;
 }
+
 button {
   margin-left: 70%;
   color: red;
 }
+
 img {
   width: 100px;
 }
+
 h1 {
   color: red;
 }

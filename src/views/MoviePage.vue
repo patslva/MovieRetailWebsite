@@ -3,6 +3,9 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
 import Modal from "../components/Modal.vue";
+import axios from "axios";
+
+
 const store = useStore();
 const router = useRouter();
 const showModal = ref(false);
@@ -14,6 +17,7 @@ const genre = ref(28);
 const Genres = ref(28);
 const page = ref(1);
 const totalPages = ref(0);
+
 const openModal = (id) => {
   showModal.value = true;
   selectedId.value = id;
@@ -24,9 +28,7 @@ const closeModal = () => {
 const toCart = () => {
   router.push("./purchases");
 };
-const login = () => {
-  router.push("./purchases");
-};
+
 const getGenres = async () => {
   searchResults.value = [];
   criteria.value = "";
@@ -38,7 +40,7 @@ const search = async (direction) => {
   let data = (
     await axios.get("https://api.themoviedb.org/3/search/movie", {
       params: {
-        api_key: "261b287b93c009cd3f2fae376443794a",
+        api_key: "c09d06bd40e47b140813f600f52a6ac7",
         query: criteria.value,
         include_adult: false,
         page: page.value,
@@ -55,6 +57,7 @@ const search = async (direction) => {
     };
   });
 };
+// await store.populateFirestore(); 
 </script>
 
 <template>
@@ -70,6 +73,7 @@ const search = async (direction) => {
       <option value="Science Fiction">Science Fiction</option>
       <option value="Adventure">Adventure</option>
       <option value="Fantasy">Fantasy</option>
+      <option value="TV Movie">TV Movie</option>
     </select>
     <input type="search" v-model="criteria" @keydown.enter="search(0)" />
     <button @click="toCart()">Cart</button>
