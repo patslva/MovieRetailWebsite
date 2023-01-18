@@ -26,7 +26,7 @@ const login = () => {
     signInWithEmailAndPassword(auth, email.value, password.value).then(
       (userCredential) => {
         const user = userCredential.user;
-        store.getMovies();
+        // store.getMovies();
         router.push("./movies");
       }
     );

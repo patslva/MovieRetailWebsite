@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
 import Modal from "../components/Modal.vue";
-
 const store = useStore();
 const router = useRouter();
 const showModal = ref(false);
@@ -12,28 +11,30 @@ const searchedMovie = ref("");
 const criteria = ref("");
 const searchResults = ref([]);
 const genre = ref(28);
+const Genres = ref(28);
 const page = ref(1);
 const totalPages = ref(0);
-
 const openModal = (id) => {
   showModal.value = true;
   selectedId.value = id;
 };
-
 const closeModal = () => {
   showModal.value = false;
 };
-
 const toCart = () => {
   router.push("./purchases");
 };
-
 const login = () => {
   router.push("./purchases");
 };
-
+const getGenres = async () => {
+  searchResults.value = [];
+  criteria.value = "";
+  await store.getMovies(genre.value);
+};
 const search = async (direction) => {
   page.value += direction;
+
   let data = (
     await axios.get("https://api.themoviedb.org/3/search/movie", {
       params: {
@@ -44,7 +45,9 @@ const search = async (direction) => {
       },
     })
   ).data;
+
   totalPages.value = data.total_pages;
+
   searchResults.value = data.results.map((movie) => {
     return {
       id: movie.id,
@@ -69,9 +72,7 @@ const search = async (direction) => {
       <option value="Fantasy">Fantasy</option>
     </select>
     <input type="search" v-model="criteria" @keydown.enter="search(0)" />
-    <button @click="toCart()">CART</button>
-    <button @click="toLogin()">LOGIN</button>
-    <button @click="toHome()">HOMEPAGE</button>
+    <button @click="toCart()">Cart</button>
   </div>
   <template v-if="searchResults.length">
     <div class="navigation">
