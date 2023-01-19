@@ -55,7 +55,12 @@ const registerUserByGoogle = async () => {
         <h1>Walmart IMDB</h1>
       </div>
     </div>
-    <form @submit.prevent="login()">
+    <div class="login">
+      <h1>
+        Login
+      </h1>
+    </div>
+    <form class="login" @submit.prevent="login()">
       <input type="text" placeholder="email" v-model="email" />
       <input type="password" placeholder="Password" v-model="password" />
       <input type="submit" value="LOGIN" />
@@ -74,6 +79,9 @@ const registerUserByGoogle = async () => {
 .log {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 button {
@@ -90,12 +98,23 @@ input {
   display: inline-block;
 }
 
+
 h1 {
   color: red;
 }
 
-form {
+.login {
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+}
+
+.email {
+  order: 1;
+}
+
+.password {
+  order: 2;
 }
 </style>

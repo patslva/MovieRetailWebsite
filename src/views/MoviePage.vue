@@ -75,7 +75,7 @@ const search = async (direction) => {
       <option value="Fantasy">Fantasy</option>
       <option value="TV Movie">TV Movie</option>
     </select>
-    <input type="search" v-model="criteria" @keydown.enter="search(0)" />
+    <input type="search" placeholder="Search..." v-model="criteria" @keydown.enter="search(0)" />
     <button @click="toCart()">Cart</button>
   </div>
   <template v-if="searchResults.length">
@@ -85,6 +85,9 @@ const search = async (direction) => {
       <button class="next" v-show="page < totalPages" @click="search(1)">Next</button>
     </div>
   </template>
+  <!-- <div class="search-button">
+    <button type="submit">Search</button>
+  </div> -->
   <div class="movie-grid">
     <template v-if="searchResults.length">
       <img class="movie" v-for="movie in searchResults" :id="movie.id" @click="openModal(movie.id)"
@@ -103,18 +106,38 @@ const search = async (direction) => {
   display: flex;
 }
 
+select {
+  height: 50px;
+  margin-left: 75px;
+}
+
+input {
+  height: 50px;
+  margin-left: 75px;
+}
+
+
+
 button {
-  margin-left: 65%;
+  margin-left: 40%;
+}
+
+.header {
+  width: 1500px;
 }
 
 img {
-  width: 100px;
+  width: 250px;
+  margin: 10px;
+
 }
 
-.posterss {
-  width: 200px;
+
+/* .posterss {
+  width: 250px;
+  height: max-content;
   padding: 1vw;
-}
+} */
 
 button {
   width: 50px;
