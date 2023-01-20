@@ -6,13 +6,15 @@
     <div class="company">
       <h1>Walmart IMDB</h1>
     </div>
-    <RouterLink to="/register" custom v-slot="{ navigate }">
-      <button @click="navigate" role="link">REGISTER</button>
-    </RouterLink>
+    <div class="register">
+      <RouterLink to="/register" custom v-slot="{ navigate }">
+        <button class="boxed-button" @click="navigate" role="link">REGISTER</button>
+      </RouterLink>
+    </div>
   </div>
   <div class="login">
     <RouterLink to="/login" custom v-slot="{ navigate }">
-      <button @click="navigate" role="link">LOGIN</button>
+      <button class="boxed-button" @click="navigate" role="link">LOGIN</button>
     </RouterLink>
   </div>
 </template>
@@ -21,6 +23,24 @@
 .header {
   padding-left: 2%;
   display: flex;
+  align-items: center;
+}
+
+.login {
+  padding-left: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.register {
+  padding-left: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.boxed-button {
+  border: 2px solid silver;
+  padding: 10px 20px;
 }
 
 button {

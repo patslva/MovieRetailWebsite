@@ -2,21 +2,24 @@
 
 <template>
   <div class="hero">
-    <h1>Movies You Should Watch!</h1>
+    <h2>Welcome to Walmart IMDB, Movies Right to your door!</h2>
   </div>
 
-  <img src="../images/fam.jpeg" alt="" />
+  <!-- <img src="../images/seats.jpeg" alt="" /> -->
 </template>
 
 <style scoped>
 .hero {
-  /* background-color: rgba(0, 0, 0, 0.5); */
   position: relative;
-  /* width: 100%; */
-  height: 590px;
-  /* padding: 29%; */
+  width: 100vw;
+  height: 100vh;
   text-align: left;
+  background-image: url("../images/seats.jpeg");
+  background-size: 100% 100%;
+  background-position: center;
+  background-attachment: fixed;
 }
+
 .hero::before {
   content: "";
   position: absolute;
@@ -24,7 +27,8 @@
   height: 100%;
   /* background: linear-gradient(0deg, #000000 15%, #ffffff44 100%); */
 }
-.hero > h1 {
+
+.hero>h1 {
   color: white;
   position: fixed;
   font-size: 100px;
@@ -33,10 +37,15 @@
   /* width: 230px; */
   text-transform: uppercase;
 }
-img {
+
+/* img {
   display: block;
-  margin: auto;
   width: 80%;
   height: 70%;
+  margin-top: 0;
+} */
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
 }
 </style>

@@ -12,17 +12,23 @@ console.log(cartItemsCount.value);
 </script>
 
 <template>
-  <div v-for="movie in Array.from(store.cart.values())">
-    <img :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
-    <div class="info">
-      <h1>{{ movie.title }}</h1>
-      <!-- <h2>{{ movie.date }}</h2> -->
+  <div class="cart-container">
+    <div class="cart-item" v-for="movie in Array.from(store.cart.values())">
+      <div class="movie-box">
+        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
+        <div class="info">
+          <h1>{{ movie.title }}</h1>
+        </div>
+        <button class="remove-button" @click="store.removeFromCart(movie.id)">Remove</button>
+      </div>
     </div>
-    <button @click="store.removeFromCart(movie.id)">Remove</button>
-  </div>
 
-  <h2>{{ cartItemsCount }} items in cart</h2>
+    <h2>{{ cartItemsCount }} items in cart</h2>
+  </div>
 </template>
+
+
+
 
 <style scoped>
 .header {
@@ -35,6 +41,12 @@ button {
   color: red
 }
 
+.movie-box {
+  border: 1px solid silver;
+  padding: 10px;
+  margin: 10px;
+}
+
 img {
   width: 250px;
 
@@ -43,6 +55,32 @@ img {
 .info {
   display: inline-block;
 }
+
+.remove-button {
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.cart-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cart-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+
 
 .posterss {
   width: 200px;
