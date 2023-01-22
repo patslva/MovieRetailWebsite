@@ -73,7 +73,6 @@ const registerUserByGoogle = async () => {
 
 .register-form {
     margin: 0 auto;
-    /* text-align: center; */
     display: flex;
     flex-direction: column;
     border: 2px solid black;

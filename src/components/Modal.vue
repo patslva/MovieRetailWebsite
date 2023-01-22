@@ -87,7 +87,6 @@ let data = (
   position: absolute;
   display: flex;
   padding: 5%;
-  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 h1 {

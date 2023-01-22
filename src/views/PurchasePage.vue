@@ -20,6 +20,8 @@ console.log(cartItemsCount.value);
           <h1>{{ movie.title }}</h1>
         </div>
         <button class="remove-button" @click="store.removeFromCart(movie.id)">Remove</button>
+
+
       </div>
     </div>
     <h2>{{ cartItemsCount }} items in cart</h2>

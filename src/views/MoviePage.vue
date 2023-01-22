@@ -86,9 +86,6 @@ const search = async (direction) => {
       <button class="next" v-show="page < totalPages" @click="search(1)">Next</button>
     </div>
   </template>
-  <!-- <div class="search-button">
-    <button type="submit">Search</button>
-  </div> -->
   <div class="parent-container">
     <div class="movie-grid">
       <template v-if="searchResults.length">
@@ -122,13 +119,11 @@ input {
 .parent-container {
   position: relative;
   height: 100%;
-  /* or any value that covers the entire page */
   padding-bottom: 60px;
 }
 
 .movie-grid img {
   z-index: 0;
-  /* or any lower value */
 }
 
 .cart {
@@ -162,13 +157,6 @@ img {
   margin: 10px;
 
 }
-
-
-/* .posterss {
-  width: 250px;
-  height: max-content;
-  padding: 1vw;
-} */
 
 button {
   width: 50px;
