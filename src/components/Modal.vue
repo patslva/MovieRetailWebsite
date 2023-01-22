@@ -8,7 +8,7 @@ const emits = defineEmits(["toggleModal"]);
 let data = (
   await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
     params: {
-      api_key: "261b287b93c009cd3f2fae376443794a",
+      api_key: "c09d06bd40e47b140813f600f52a6ac7",
     },
   })
 ).data;
@@ -18,6 +18,7 @@ let data = (
   <Teleport to="body">
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
+        <button class="close-button" @click="emits('toggleModal')">x</button>
         <div class="info-container">
           <img class="poster" :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`" alt="" />
           <div class="info">
@@ -112,6 +113,7 @@ img {
 }
 
 button {
+  cursor: pointer;
   margin-top: 10%;
   padding: 2%;
   height: auto;

@@ -22,7 +22,6 @@ console.log(cartItemsCount.value);
         <button class="remove-button" @click="store.removeFromCart(movie.id)">Remove</button>
       </div>
     </div>
-
     <h2>{{ cartItemsCount }} items in cart</h2>
   </div>
 </template>

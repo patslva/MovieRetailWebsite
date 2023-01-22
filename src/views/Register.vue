@@ -33,13 +33,16 @@ const registerUserByGoogle = async () => {
 </script>
 
 <template>
-    <div>
-        <h1>Login</h1>
-        <h2>Register by Google</h2>
-        <button @click="registerUserByGoogle">Google</button>
-        <hr />
-        <h2>Register by email</h2>
-        <form @submit.prevent="registerUserByEmail()">
+    <div class="whole-thing">
+        <div class="google">
+            <h1>Register</h1>
+            <h2>Register by Google</h2>
+            <button @click="registerUserByGoogle">Google</button>
+            <hr />
+            <h2>Register by email</h2>
+        </div>
+
+        <form class="register-form" @submit.prevent="registerUserByEmail()">
             <input v-model="username" type="text" placeholder="username" /> <br />
             <input v-model="email" type="email" placeholder="email" /> <br />
             <input v-model="password1" type="password" placeholder="password" /> <br />
@@ -50,6 +53,36 @@ const registerUserByGoogle = async () => {
 </template>
 
 <style scoped>
+* {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.whole-thing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../images/register.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.register-form {
+    margin: 0 auto;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 0;
+    width: 400px;
+    height: 300px;
+}
+
 h1 {
     color: red;
 }
@@ -60,5 +93,11 @@ button {
 
 input {
     color: white;
+    height: 50px;
+    width: 400px;
+}
+
+.google {
+    width: 445px;
 }
 </style>

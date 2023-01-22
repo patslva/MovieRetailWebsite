@@ -33,7 +33,7 @@
 }
 
 .register {
-  padding-left: 50%;
+  padding-left: 47%;
   display: flex;
   align-items: center;
 }

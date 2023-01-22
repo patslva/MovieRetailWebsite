@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
 import Modal from "../components/Modal.vue";
 import axios from "axios";
+import '@fortawesome/fontawesome-free/css/all.css';
 
 
 const store = useStore();
@@ -76,7 +77,7 @@ const search = async (direction) => {
       <option value="TV Movie">TV Movie</option>
     </select>
     <input type="search" placeholder="Search..." v-model="criteria" @keydown.enter="search(0)" />
-    <button @click="toCart()">Cart</button>
+    <button class="cart" @click="toCart()"><i class="fas fa-shopping-cart"></i></button>
   </div>
   <template v-if="searchResults.length">
     <div class="navigation">
@@ -88,15 +89,17 @@ const search = async (direction) => {
   <!-- <div class="search-button">
     <button type="submit">Search</button>
   </div> -->
-  <div class="movie-grid">
-    <template v-if="searchResults.length">
-      <img class="movie" v-for="movie in searchResults" :id="movie.id" @click="openModal(movie.id)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.image}`" />
-    </template>
-    <template v-else>
-      <img class="movie" v-for="movie in store.movies" :id="movie.id" @click="openModal(movie.id)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.image}`" />
-    </template>
+  <div class="parent-container">
+    <div class="movie-grid">
+      <template v-if="searchResults.length">
+        <img class="movie" v-for="movie in searchResults" :id="movie.id" @click="openModal(movie.id)"
+          :src="`https://image.tmdb.org/t/p/w500${movie.image}`" />
+      </template>
+      <template v-else>
+        <img class="movie" v-for="movie in store.movies" :id="movie.id" @click="openModal(movie.id)"
+          :src="`https://image.tmdb.org/t/p/w500${movie.image}`" />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -116,10 +119,38 @@ input {
   margin-left: 75px;
 }
 
+.parent-container {
+  position: relative;
+  height: 100%;
+  /* or any value that covers the entire page */
+  padding-bottom: 60px;
+}
+
+.movie-grid img {
+  z-index: 0;
+  /* or any lower value */
+}
+
+.cart {
+  height: 50px;
+  width: 100px;
+  font-size: 40px;
+}
+
+.navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
 
 
 button {
+  cursor: pointer;
   margin-left: 40%;
+
 }
 
 .header {
