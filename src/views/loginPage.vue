@@ -1,8 +1,6 @@
 <script setup>
 import {
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase/index.js";
 import { ref } from "vue";
@@ -26,7 +24,6 @@ const login = () => {
     signInWithEmailAndPassword(auth, email.value, password.value).then(
       (userCredential) => {
         const user = userCredential.user;
-        // store.getMovies();
         router.push("./movies");
       }
     );
@@ -108,7 +105,6 @@ h1 {
 
 .login {
   margin: 0 auto;
-  /* text-align: center; */
   display: flex;
   flex-direction: column;
   border: 2px solid black;

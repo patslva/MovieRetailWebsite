@@ -6,11 +6,14 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
+import { useRouter } from "vue-router";
+
 
 const username = ref("");
 const email = ref("");
 const password1 = ref("");
 const password2 = ref("");
+const router = useRouter();
 
 const registerUserByEmail = async () => {
     if (password1.value !== password2.value) {
@@ -28,7 +31,7 @@ const registerUserByEmail = async () => {
 const registerUserByGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const user = await signInWithPopup(auth, provider);
-    console.log(user);
+    router.push('/movies')
 }
 </script>
 
