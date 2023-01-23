@@ -36,15 +36,6 @@ const login = () => {
   }
 };
 
-// const registerUserByGoogle = async () => {
-//   const provider = new GoogleAuthProvider();
-//   await signInWithPopup(auth, provider).then((result) => {
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential.accessToken;
-//     const user = result.user;
-//     router.push("./movies");
-//   });
-// };
 </script>
 
 <template>
