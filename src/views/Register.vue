@@ -43,7 +43,6 @@ const registerUserByGoogle = async () => {
         </div>
 
         <form class="register-form" @submit.prevent="registerUserByEmail()">
-            <input v-model="username" type="text" placeholder="username" /> <br />
             <input v-model="email" type="email" placeholder="email" /> <br />
             <input v-model="password1" type="password" placeholder="password" /> <br />
             <input v-model="password2" type="password" placeholder="re-enter password" /> <br />
