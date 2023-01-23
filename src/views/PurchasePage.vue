@@ -4,10 +4,6 @@ import axios from "axios";
 import { useStore } from "../store/index.js";
 
 const store = useStore();
-const cartItemsCount = ref(0);
-cartItemsCount.value = Array.from(store.cart.values()).length;
-console.log(cartItemsCount.value);
-
 
 </script>
 
@@ -24,7 +20,7 @@ console.log(cartItemsCount.value);
 
       </div>
     </div>
-    <h2>{{ cartItemsCount }} items in cart</h2>
+    <h2>{{ Array.from(store.cart.values()).length }} items in cart</h2>
   </div>
 </template>
 
